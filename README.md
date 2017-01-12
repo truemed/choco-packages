@@ -1,11 +1,11 @@
 # Chocolatey Packages
 
-Chocolatey packages a
+The following are [Chocolatey packages](https://chocolatey.org) for quick/automated installation and management.
 
 # Mod Security
 
-[Chocolatey Package](https://chocolatey.org/packages/modsecurity/2.9.1)
-[Chocolatey Package Repo](https://github.com/truemed/choco-packages/tree/master/modsecurity)
+ - [Chocolatey Package](https://chocolatey.org/packages/modsecurity/2.9.1)
+ - [Chocolatey Package Repo](https://github.com/truemed/choco-packages/tree/master/modsecurity)
 
 [![N|Solid](https://raw.githubusercontent.com/truemed/choco-packages/master/modsecurity/resources/modsecurity.png)](https://chocolatey.org/packages/modsecurity/2.9.1)
 
