@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Read this before creating packages: https://chocolatey.org/docs/create-packages -->
+<!-- Test your packages in a test environment: https://github.com/chocolatey/chocolatey-test-environment -->
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>modsecurity</id>
+    <version>2.9.1</version>
+    <packageSourceUrl>https://github.com/truemed/choco-packages/modsecurity</packageSourceUrl>
+    <owners>truemedia</owners>
+    <title>modsecurity (Install)</title>
+    <authors>Trustwave SpiderLabs</authors>
+    <!-- projectUrl is required for the community feed -->
+    <projectUrl>https://github.com/SpiderLabs/ModSecurity</projectUrl>
+    <!--<iconUrl>http://cdn.rawgit.com/__REPLACE_YOUR_REPO__/master/icons/modsecurity.png</iconUrl>-->
+    <licenseUrl>https://raw.githubusercontent.com/SpiderLabs/ModSecurity/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/SpiderLabs/ModSecurity/</projectSourceUrl>
+    <docsUrl>https://github.com/SpiderLabs/ModSecurity/wiki</docsUrl>
+    <tags>modsecurity iis</tags>
+    <summary>modsecurity</summary>
+    <description>ModSecurity is an open source, cross platform web application firewall (WAF) developed by Trustwave's SpiderLabs. It has a robust event-based programming language which provides protection from a range of attacks against web applications and allows for HTTP traffic monitoring, logging and real-time analysis. With over 10,000 deployments world-wide, ModSecurity is the most widely deployed WAF in existence.</description>
+    <dependencies>
+      <dependency id="vcredist2010" />
+    </dependencies>
+  </metadata>
+  <files>
+    <!-- this section controls what actually gets packaged into the Chocolatey package -->
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
