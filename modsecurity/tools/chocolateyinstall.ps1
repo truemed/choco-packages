@@ -22,12 +22,16 @@ $packageArgs = @{
   validExitCodes= @(0, 3010, 1641)
 }
 
-# Detect if Windows Server (if so, we can auto-install IIS if needed)
-$WindowsVersion = $(Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion' ProductName).ProductName
-if ($WindowsVersion -like 'Windows Server*') { 
-    
-    # Require IIS WebserverRole
-    choco install IIS-WebServerRole -s windowsfeatures
+# Detect if IIS is enabled. We need this to be enabled before installing modsecurity.
+if(!(test-path "$env:systemroot\system32\inetsrv\Microsoft.Web.Administration.dll")) {
+
+    $dism = "$env:WinDir\System32\dism.exe"
+    # Add Windows Feature IIS Webserver
+    Write-Host "Enabling Windows Feature: IIS Webserver"
+
+    $iisArgs = "/Online /NoRestart /Enable-Feature /All /FeatureName:IIS-WebServer"
+    $statements = "$dism $iisArgs"
+    Start-ChocolateyProcessAsAdmin "$statements" -minimized -nosleep -validExitCodes @(0,1)
 }
 
 Install-ChocolateyPackage @packageArgs
