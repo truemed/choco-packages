@@ -30,8 +30,8 @@ if(!(test-path "$env:systemroot\system32\inetsrv\Microsoft.Web.Administration.dl
     Write-Host "Enabling Windows Feature: IIS Webserver"
 
     $iisArgs = "/Online /NoRestart /Enable-Feature /All /FeatureName:IIS-WebServer"
-    $statements = "$dism $iisArgs"
-    Start-ChocolateyProcessAsAdmin "$statements" -minimized -nosleep -validExitCodes @(0,1)
+    #$statements = "$dism $iisArgs"
+    Start-ChocolateyProcessAsAdmin -Statements "$iisArgs" -minimized -nosleep -validExitCodes @(0,1) -ExeToRun $dism
 }
 
 Install-ChocolateyPackage @packageArgs
@@ -55,7 +55,8 @@ catch { }
 
 #Download OWASP ModSecurity Rules
 $rulesetPath =  "$env:ProgramData\ModSecurity"
-Install-ChocolateyZipPackage -PackageName 'owasp-crs' -Url 'https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.0.0.zip' -UnzipLocation $rulesetPath
+$rulesetChecksum = "1090D5A67B88A99D093211C604B271821BADADBAC13F6E50B214DE2F6D46194F";
+Install-ChocolateyZipPackage -PackageName 'owasp-crs' -Url 'https://github.com/SpiderLabs/owasp-modsecurity-crs/archive/v3.0.0.zip' -UnzipLocation $rulesetPath -Checksum $rulesetChecksum -ChecksumType sha256
 
 
 
